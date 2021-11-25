@@ -15,7 +15,7 @@ export default (mode) => {
 		});
 		//  接口请求
 		router.get(['/api/getData'], ctx => {
-				ctx.body = JSON.stringify({data: '正常'});
+				ctx.body = JSON.stringify({name: '正常'});
 		})
 		//  路由注册到app上
 		app.use(router.routes());
