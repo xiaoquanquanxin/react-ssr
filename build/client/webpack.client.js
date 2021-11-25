@@ -1,7 +1,6 @@
 const { getDirFn, webpackResolve } = require('../constants');
-//const { merge } = require('webpack-merge');
-
-module.exports =  ({
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+module.exports = ({
     output: {
         filename: 'assets/bundle.js',
         path: getDirFn('dist'),
@@ -23,4 +22,9 @@ module.exports =  ({
         'react-redux': 'ReactRedux',
         // 'react-router-dom': 'ReactRouterDOM',
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: getDirFn('src/client/template.html'),
+        }),
+    ],
 });
