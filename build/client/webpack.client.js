@@ -1,5 +1,3 @@
-const {resolve} = require('path');
-const {projectDir} = require('../constants');
 const {getDirFn} = require('../constants');
 
 module.exports = {
@@ -24,7 +22,6 @@ module.exports = {
     externals: {
         'react': 'React',
         'react-dom': 'ReactDOM',
-        'react-router': 'ReactRouter',
-        'react-router-dom': 'ReactRouterDOM',
+        // 'react-router-dom': 'ReactRouterDOM',
     },
 };
