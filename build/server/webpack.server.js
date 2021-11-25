@@ -21,10 +21,9 @@ module.exports = {
     },
     externals: [webpackNodeExternals(
         {
-            'react': 'React',
-            'react-dom': 'ReactDOM',
-//            'react-router': 'ReactRouter',
-//            'react-router-dom': 'ReactRouterDOM',
+            // 'react': 'React',
+            // 'react-dom': 'ReactDOM',
+            // 'react-router-dom': 'ReactRouterDOM',
         },
     )],
 };
