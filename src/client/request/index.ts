@@ -9,20 +9,20 @@ const request = async (url, method, data = null) => {
 										resolve(v.data);
 								}
 								reject(v.data);
-						})
-		}))
-}
+						});
+		}));
+};
 //  get 请求
 const requestGet = async (url, params = null) => {
 		if (params) {
 				url += `?${new URLSearchParams(params).toString()}`;
 		}
 		return request(url, 'get');
-}
+};
 const requestGetData = () => {
-		return requestGet('/api/getData', null)
-}
+		return requestGet('/api/getData', null);
+};
 
 export {
 		requestGetData,
-}
+};
