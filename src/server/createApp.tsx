@@ -9,7 +9,8 @@ const koa = require("koa");
 const app = new koa();
 export default (mode) => {
 	const htmlTemplateFn = htmlTemplate(mode);
-	router.get(['/'], ctx => {
+	router.get(['/about', '/'], ctx => {
+		console.log('客户端请求是', ctx.req.url);
 		ctx.body = htmlTemplateFn(ctx.req.url);
 	});
 	//	路由注册到app上
@@ -19,6 +20,10 @@ export default (mode) => {
 	//	启动静态资源服务器
 	app.use(koaStatic('assets'));
 	app.listen(3000, () => {
-		console.log('服务已经启动', mode);
+		console.clear();
+		process.nextTick(() => {
+			console.log('服务已经启动');
+			console.log(mode);
+		});
 	});
 }
