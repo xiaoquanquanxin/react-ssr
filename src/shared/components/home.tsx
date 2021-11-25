@@ -1,4 +1,5 @@
-const React = require("react");
+import * as React from 'react';
+
 function Home() {
 	return (
 		<div>
