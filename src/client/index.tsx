@@ -3,9 +3,7 @@ import {App} from "../shared/app";
 
 ReactDOM.render(
 		<BrowserRouter>
-				<div>
-						<App/>
-				</div>
+				<App/>
 		</BrowserRouter>,
 		document.getElementById('app')
 );

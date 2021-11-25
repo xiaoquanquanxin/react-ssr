@@ -1,0 +1,13 @@
+{
+    "rules": {
+        "ter-indent": [
+            true,
+            4
+        ],
+        "indent": [
+            true,
+            "tabs",
+            2
+        ]
+    }
+}
