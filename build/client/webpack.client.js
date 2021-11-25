@@ -2,8 +2,8 @@ const { getDirFn, webpackResolve } = require('../constants');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = ({
     output: {
-        filename: 'assets/bundle.js',
-        path: getDirFn('dist'),
+        filename: 'js/bundle.[contenthash:4].js',
+        path: getDirFn('dist/assets'),
     },
     module: {
         rules: [
@@ -25,6 +25,7 @@ module.exports = ({
     plugins: [
         new HtmlWebpackPlugin({
             template: getDirFn('src/client/template.html'),
+            filename: getDirFn('dist/assets/index.html'),
         }),
     ],
 });
