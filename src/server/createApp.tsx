@@ -15,8 +15,8 @@ export default (mode) => {
 		});
 		//  接口请求
 		router.get(['/api/getData'], ctx => {
-				ctx.body = JSON.stringify({name: '正常'});
-		})
+				ctx.body = JSON.stringify({name: `服务端返回的数据`});
+		});
 		//  路由注册到app上
 		app.use(router.routes());
 		app.use(router.allowedMethods());
@@ -24,7 +24,7 @@ export default (mode) => {
 		//  启动静态资源服务器
 		app.use(koaStatic('assets'));
 		app.listen(3000, () => {
-				console.clear();
+				// console.clear();
 				process.nextTick(() => {
 						console.log('服务已经启动');
 						console.log(mode);
