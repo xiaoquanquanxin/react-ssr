@@ -1,9 +1,5 @@
 const {getDirFn} = require('../constants');
-
 module.exports = {
-    entry: {
-
-    },
     output: {
         filename: 'assets/bundle.js',
         path: getDirFn('dist'),
@@ -12,6 +8,7 @@ module.exports = {
         rules: [
             {
                 test: /\.ts(x)?/,
+                exclude: /(node_modules|bower_components)/,
                 use: ['babel-loader'],
             },
         ],
