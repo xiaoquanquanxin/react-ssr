@@ -1,13 +1,14 @@
-const path = require('path');
+const {resolve} = require('path');
+const {projectDir} = require('../constants');
+const {getDirFn} = require('../constants');
+
 module.exports = {
-    //  mode: 'production',
-    mode: 'development',
     entry: {
-        index: path.resolve(__dirname, '../src/client/index.tsx'),
+
     },
     output: {
         filename: 'assets/bundle.js',
-        path: path.resolve(__dirname, '../dist'),
+        path: getDirFn('dist'),
     },
     module: {
         rules: [
@@ -24,6 +25,6 @@ module.exports = {
         'react': 'React',
         'react-dom': 'ReactDOM',
         'react-router': 'ReactRouter',
-        'react-router-dom':'ReactRouterDOM',
+        'react-router-dom': 'ReactRouterDOM',
     },
 };

@@ -1,16 +1,12 @@
-const path = require('path');
 const webpackNodeExternals = require('webpack-node-externals');
+const {getDirFn} = require('../constants');
+
 module.exports = {
-    //  mode: 'production',
-    mode: 'development',
     //  告诉 webpack 打包环境为 nodeJs
     target: 'node',
-    entry: {
-        app: path.resolve(__dirname, '../src/server/app.tsx'),
-    },
     output: {
         filename: 'app.js',
-        path: path.resolve(__dirname, '../dist'),
+        path: getDirFn('dist'),
     },
     module: {
         rules: [
