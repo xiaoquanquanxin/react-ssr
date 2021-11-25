@@ -1,12 +1,10 @@
-import App from "../shared/app";
 import {BrowserRouter} from 'react-router-dom';
-
-const React = require('react');
-const ReactDOM = require('react-dom');
-console.log(App);
-export default ReactDOM.render(
+import {App} from "../shared/app";
+ReactDOM.render(
 	<BrowserRouter>
-		<App/>
+		<div>
+			<App/>
+		</div>
 	</BrowserRouter>,
 	document.getElementById('app')
 );
