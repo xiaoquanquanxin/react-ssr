@@ -7,7 +7,8 @@ const {renderToString} = require('react-dom/server');
 import getCdnScripts from './getCdnScripts';
 
 const htmlTemplate = (mode, ssrComponent) => {
-		let template = fs.readFileSync('../src/client/template.html').toString();
+		let template = fs.readFileSync('../dist/index.html').toString();
+		console.log(template);
 		//	替换cdn
 		template = template.replace('[[[cdn]]]', getCdnScripts(mode));
 		//	替换服务端渲染初始值
