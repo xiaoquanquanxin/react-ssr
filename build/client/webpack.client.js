@@ -1,5 +1,7 @@
-const {getDirFn} = require('../constants');
-module.exports = {
+const { getDirFn, webpackResolve } = require('../constants');
+//const { merge } = require('webpack-merge');
+
+module.exports =  ({
     output: {
         filename: 'assets/bundle.js',
         path: getDirFn('dist'),
@@ -8,17 +10,17 @@ module.exports = {
         rules: [
             {
                 test: /\.ts(x)?/,
-                exclude: /(node_modules|bower_components)/,
                 use: ['babel-loader'],
             },
         ],
     },
-    resolve: {
-        extensions: ['.ts', '.tsx', '.js', '.json'],
-    },
+    resolve: webpackResolve,
     externals: {
         'react': 'React',
         'react-dom': 'ReactDOM',
+        'axios': 'axios',
+        'redux': 'Redux',
+        'react-redux': 'ReactRedux',
         // 'react-router-dom': 'ReactRouterDOM',
     },
-};
+});

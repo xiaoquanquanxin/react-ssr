@@ -1,7 +1,7 @@
 const webpackNodeExternals = require('webpack-node-externals');
-const {getDirFn} = require('../constants');
-
-module.exports = {
+const { getDirFn, webpackResolve } = require('../constants');
+//const { merge } = require('webpack-merge');
+module.exports = ({
     //  告诉 webpack 打包环境为 nodeJs
     target: 'node',
     output: {
@@ -16,9 +16,7 @@ module.exports = {
             },
         ],
     },
-    resolve: {
-        extensions: ['.ts', '.tsx', '.js', '.json'],
-    },
+    resolve: webpackResolve,
     externals: [webpackNodeExternals(
         {
             // 'react': 'React',
@@ -26,4 +24,4 @@ module.exports = {
             // 'react-router-dom': 'ReactRouterDOM',
         },
     )],
-};
+});
