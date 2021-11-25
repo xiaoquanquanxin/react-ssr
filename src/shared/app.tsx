@@ -1,12 +1,12 @@
-import Home from "./components/home";
+import * as React from 'react';
+import { Routes, Route, Outlet, Link } from "react-router-dom";
 
-const React = require('react');
-import {Routes, Route, Outlet, Link} from 'react-router-dom';
 import About from './components/about';
+import Home from './components/home';
 
-const Layout = () => {
+function Layout() {
 	return (
-		<>
+		<div>
 			<nav>
 				<ul>
 					<li>
@@ -17,22 +17,23 @@ const Layout = () => {
 					</li>
 				</ul>
 			</nav>
+			<hr/>
 			<Outlet/>
-		</>
+		</div>
 	);
-};
+}
 
 const App = () => {
 	return (
-		<div>
-			<h1>小学生</h1>
-			<Routes>
-				<Route path="/" element={<Layout/>}>
-					<Route index element={<Home/>}/>
-					<Route path="about" element={<About/>}/>
-				</Route>
-			</Routes>
-		</div>
+		<Routes>
+			<Route path="/" element={<Layout/>}>
+				<Route index element={<Home/>}/>
+				<Route path="about" element={<About/>}/>
+			</Route>
+		</Routes>
 	);
 };
-export default App;
+
+export {
+	App,
+}
