@@ -7,10 +7,10 @@
         "start": "cd dist && nodemon app.js",
         "build:dev": "npm-run-all --parallel build:dev:*",
         "build:prod": "npm-run-all --parallel build:prod:*",
-        "build:dev:clent": "webpack --config build/webpack.dev.client.js",
-        "build:dev:server": "webpack --config build/webpack.dev.server.js",
-        "build:prod:clent": "webpack --config build/webpack.prod.client.js",
-        "build:prod:server": "webpack --config build/webpack.prod.server.js"
+        "build:dev:clent": "webpack --config build/client/webpack.client.dev.js",
+        "build:dev:server": "webpack --config build/server/webpack.server.dev.js",
+        "build:prod:clent": "webpack --config build/client/webpack.client.prod.js",
+        "build:prod:server": "webpack --config build/server/webpack.server.prod.js"
     },
     "author": "",
     "license": "ISC",
