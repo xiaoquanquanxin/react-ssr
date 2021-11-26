@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useReducer} from "react";
 import {useEffect} from "react";
-import {requestGetData} from "@client/request";
+import {requestGetData} from "@shared/request";
 import {getInitialState, reducer} from "@client/store/reducer";
 
 function About() {

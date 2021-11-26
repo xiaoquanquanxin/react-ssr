@@ -1,4 +1,4 @@
-import ssrTemplate from './ssrTemplate';
+import ssrTemplate from './serverUtils/ssrTemplate';
 //	静态资源服务器
 import koaStatic from 'koa-static';
 import {matchPath} from "react-router-dom";

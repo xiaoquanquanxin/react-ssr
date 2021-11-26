@@ -2,7 +2,7 @@ import React from "react";
 import { RouteConfig } from 'react-router-config';
 import Home from "@shared/components/home";
 import About from "@shared/components/about";
-import {requestGetData} from "@client/request";
+import {requestGetData} from "@shared/request";
 
 const routes: RouteConfig = [
 		{

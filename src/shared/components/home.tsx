@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {useEffect, useState} from "react";
-import {requestGetData} from "@client/request";
+import {requestGetData} from "@shared/request";
 
 function Home() {
 		const [data, getData] = useState(null);
