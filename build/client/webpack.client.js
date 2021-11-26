@@ -1,9 +1,10 @@
-const { getDirFn, webpackResolve } = require('../constants');
+const {getDirFn, webpackResolve} = require('../constants');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 module.exports = ({
     output: {
         filename: 'js/bundle.[contenthash:4].js',
-        path: getDirFn('dist/assets'),
+        path: getDirFn('dist/client'),
     },
     module: {
         rules: [
@@ -23,9 +24,12 @@ module.exports = ({
         // 'react-router-dom': 'ReactRouterDOM',
     },
     plugins: [
+        new CleanWebpackPlugin({
+            cleanOnceBeforeBuildPatterns: getDirFn('dist')
+        }),
         new HtmlWebpackPlugin({
             template: getDirFn('src/client/template.html'),
-            filename: getDirFn('dist/assets/index.html'),
+            filename: getDirFn('dist/client/index.html'),
         }),
     ],
 });
