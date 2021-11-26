@@ -30,6 +30,8 @@ module.exports = ({
         new HtmlWebpackPlugin({
             template: getDirFn('src/client/template.html'),
             filename: getDirFn('dist/client/index.html'),
+            //  注意不能删除注释
+            minify: {removeComments: false,}
         }),
     ],
 });
