@@ -6,6 +6,7 @@ const request = async (url, method, data = null) => {
 				axios.get(url, {method, data})
 						.then(v => {
 								if (v.status === 200) {
+										console.log('接口底层', v.data);
 										resolve(v.data);
 								}
 								reject(v.data);
@@ -17,6 +18,7 @@ const requestGet = async (url, params = null) => {
 		if (params) {
 				url += `?${new URLSearchParams(params).toString()}`;
 		}
+		url = `http://localhost:3000` + url;
 		return request(url, 'get');
 };
 const requestGetData = () => {
