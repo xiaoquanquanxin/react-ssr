@@ -1,4 +1,4 @@
-import htmlTemplate from './htmlTemplate';
+import ssrTemplate from './ssrTemplate';
 //	静态资源服务器
 import koaStatic from 'koa-static';
 import {matchPath} from "react-router-dom";
@@ -26,7 +26,7 @@ export default (mode) => {
 				});
 				const ssrData = await Promise.all(promises);
 				//  todo    这里，以后考虑，多层路由的情况
-				ctx.body = htmlTemplate(mode, path, ssrData[0]);
+				ctx.body = ssrTemplate(mode, path, ssrData[0]);
 		});
 		//  接口请求
 		router.get(['/api/getData'], ctx => {
