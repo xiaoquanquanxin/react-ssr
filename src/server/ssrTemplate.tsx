@@ -8,7 +8,7 @@ const {renderToString} = require('react-dom/server');
 import getCdnScripts from './getCdnScripts';
 
 const getTemplate = (mode, ssrData = {}, ssrComponent) => {
-		let template = fs.readFileSync('../dist/client/index.html').toString();
+		let template = fs.readFileSync('../client/index.html').toString();
 		//  context
 		const contextString = JSON.stringify(ssrData);
 		template = template.replace('<!--ssrData-->', `<script>window.initialState=${contextString}</script>`);

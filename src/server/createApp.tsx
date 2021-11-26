@@ -37,7 +37,7 @@ export default (mode) => {
 		app.use(router.allowedMethods());
 
 		//  启动静态资源服务器
-		app.use(koaStatic('client'));
+		app.use(koaStatic('../client'));
 		app.listen(3000, () => {
 				console.clear();
 				process.nextTick(() => {
