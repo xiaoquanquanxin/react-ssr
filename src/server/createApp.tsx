@@ -1,6 +1,9 @@
 import htmlTemplate from './htmlTemplate';
 //	静态资源服务器
 import koaStatic from 'koa-static';
+import {matchPath} from "react-router-dom";
+import routes from "@shared/routes";
+
 //	路由
 const koaRouter = require('@koa/router');
 const router = new koaRouter();
@@ -8,14 +11,26 @@ const router = new koaRouter();
 const koa = require("koa");
 const app = new koa();
 export default (mode) => {
-		const htmlTemplateFn = htmlTemplate(mode);
-		router.get(['/about', '/'], ctx => {
-				console.log('客户端请求是', ctx.req.url);
-				ctx.body = htmlTemplateFn(ctx.req.url);
+		router.get(['/about', '/'], async ctx => {
+				const {url} = ctx.req;
+				const {path} = ctx.request;
+				console.log('客户端请求url是', url);
+				console.log('客户端请求路由是', path);
+				const promises = [];
+				routes.some(route => {
+						const match = matchPath(path, route.path);
+						if (match && route.loadData) {
+								promises.push(route.loadData());
+						}
+						return match;
+				});
+				const ssrData = await Promise.all(promises);
+				//  todo    这里，以后考虑，多层路由的情况
+				ctx.body = htmlTemplate(mode, path, ssrData[0]);
 		});
 		//  接口请求
 		router.get(['/api/getData'], ctx => {
-				ctx.body = JSON.stringify({name: `服务端返回的数据`});
+				ctx.body = JSON.stringify({name: `接口返回的数据`});
 		});
 		//  路由注册到app上
 		app.use(router.routes());
@@ -24,7 +39,7 @@ export default (mode) => {
 		//  启动静态资源服务器
 		app.use(koaStatic('assets'));
 		app.listen(3000, () => {
-				// console.clear();
+				console.clear();
 				process.nextTick(() => {
 						console.log('服务已经启动');
 						console.log(mode);
