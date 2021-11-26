@@ -11,7 +11,7 @@ const getTemplate = (mode, ssrData = {}, ssrComponent) => {
 		let template = fs.readFileSync('../dist/assets/index.html').toString();
 		//  context
 		const contextString = JSON.stringify(ssrData);
-		template = template.replace('<!--ssrData-->', `<script>window.ssrData=${contextString}</script>`);
+		template = template.replace('<!--ssrData-->', `<script>window.initialState=${contextString}</script>`);
 		//	替换cdn
 		template = template.replace('<!--cdn-->', getCdnScripts(mode));
 		//	替换服务端渲染初始值

@@ -1,6 +1,10 @@
 const initialState: initialState = {name: null};
+
 export const getInitialState = () => {
-		return initialState;
+		if (typeof window === "undefined") {
+				return initialState;
+		}
+		return window.initialState;
 }
 export const createInitialState = (data) => {
 		Object.assign(initialState, data);

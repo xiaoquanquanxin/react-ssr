@@ -9,7 +9,7 @@ function About() {
 		useEffect(() => {
 				(async () => {
 						const result = await requestGetData() as initialState;
-						result.name += ' \t回来的';
+						result.name += ' 此为请求返回';
 						setData({type: 'set', newData: result});
 				})();
 		}, []);
