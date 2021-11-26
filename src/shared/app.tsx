@@ -1,8 +1,7 @@
 import * as React from 'react';
 import {Routes, Route, Outlet, Link} from "react-router-dom";
 
-import About from './components/about';
-import Home from './components/home';
+import routes from "@shared/routes";
 
 function Layout() {
 		return (
@@ -25,12 +24,14 @@ function Layout() {
 
 const App = () => {
 		return (
-				<Routes>
-						<Route path="/" element={<Layout/>}>
-								<Route index element={<Home/>}/>
-								<Route path="about" element={<About/>}/>
-						</Route>
-				</Routes>
+				<>
+						<Layout/>
+						<Routes>
+								{routes.map((route, index) => (
+										<Route {...route} key={index}/>
+								))}
+						</Routes>
+				</>
 		);
 };
 
