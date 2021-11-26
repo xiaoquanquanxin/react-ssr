@@ -6,7 +6,7 @@ module.exports = ({
     target: 'node',
     output: {
         filename: 'app.js',
-        path: getDirFn('dist'),
+        path: getDirFn('dist/server'),
     },
     module: {
         rules: [
