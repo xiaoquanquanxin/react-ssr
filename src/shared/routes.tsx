@@ -1,12 +1,10 @@
 import React from "react";
+import { RouteConfig } from 'react-router-config';
 import Home from "@shared/components/home";
 import About from "@shared/components/about";
+import {requestGetData} from "@client/request";
 
-
-const getData = () => {
-		return {name: "getData的数据"};
-}
-const routes = [
+const routes: RouteConfig = [
 		{
 				path: "/",
 				element: <Home/>,
@@ -15,7 +13,7 @@ const routes = [
 		{
 				path: "/about",
 				element: <About/>,
-				loadData: () => getData()
+				loadData: async () => requestGetData(),
 				// routes: [
 				// 		{
 				// 				path: "/tacos/bus",
