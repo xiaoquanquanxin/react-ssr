@@ -1,0 +1,3 @@
+interface initialState {
+		name: string
+}
