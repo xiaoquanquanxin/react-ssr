@@ -1,4 +1,4 @@
 const mode = 'development';
-import createApp from './createApp';
+import createApp from '../createApp';
 
 createApp(mode);
