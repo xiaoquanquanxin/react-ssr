@@ -3,6 +3,7 @@ import { RouteConfig } from 'react-router-config';
 import Home from "@shared/components/home";
 import About from "@shared/components/about";
 import {requestGetData} from "@shared/request";
+import Test from "@shared/components/test";
 
 const routes: RouteConfig = [
 		{
@@ -13,7 +14,7 @@ const routes: RouteConfig = [
 		{
 				path: "/about",
 				element: <About/>,
-				loadData: async () => requestGetData(),
+				loadData: async (params) => requestGetData(params),
 				// routes: [
 				// 		{
 				// 				path: "/tacos/bus",
@@ -24,6 +25,10 @@ const routes: RouteConfig = [
 				// 				// component: Cart
 				// 		}
 				// ]
+		},
+		{
+				path: "/test",
+				element: <Test/>,
 		}
 ];
 

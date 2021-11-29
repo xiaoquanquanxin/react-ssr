@@ -14,6 +14,9 @@ function Layout() {
 										<li>
 												<Link to="/about">About</Link>
 										</li>
+										<li>
+												<Link to="/test">Test</Link>
+										</li>
 								</ul>
 						</nav>
 						<hr/>
