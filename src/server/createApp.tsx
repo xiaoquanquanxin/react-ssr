@@ -11,7 +11,7 @@ const router = new koaRouter();
 const koa = require("koa");
 const app = new koa();
 export default (mode) => {
-		router.get(['/about', '/'], async ctx => {
+		router.get(['/about', '/test', '/'], async ctx => {
 				const {url} = ctx.req;
 				const {path} = ctx.request;
 				console.log('客户端请求url是', url);
@@ -20,7 +20,7 @@ export default (mode) => {
 				routes.some(route => {
 						const match = matchPath(path, route.path);
 						if (match && route.loadData) {
-								promises.push(route.loadData());
+								promises.push(route.loadData({from: "server"}));
 						}
 						return match;
 				});
