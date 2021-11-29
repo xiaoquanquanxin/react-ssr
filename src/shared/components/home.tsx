@@ -6,14 +6,14 @@ function Home() {
 		const [data, getData] = useState(null);
 		useEffect(() => {
 				(async () => {
-						const result = await requestGetData() as initialState;
+						const result = await requestGetData({home: 'home'}) as initialState;
 						getData(result);
 				})();
 		}, []);
 		return (
 				<div>
 						<h2>Home</h2>
-						<p>{data &&data.name}</p>
+						<p>{data && data.name}</p>
 				</div>
 		);
 }

@@ -21,8 +21,8 @@ const requestGet = async (url, params = null) => {
 		url = `http://localhost:3000` + url;
 		return request(url, 'get');
 };
-const requestGetData = () => {
-		return requestGet('/api/getData', null);
+const requestGetData = (params?) => {
+		return requestGet('/api/getData', params);
 };
 
 export {
