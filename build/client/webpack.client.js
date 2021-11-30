@@ -1,5 +1,6 @@
-const {getDirFn, webpackResolve} = require('../constants');
+const {getDirFn, webpackResolve, rules} = require('../constants');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 module.exports = ({
     output: {
@@ -7,12 +8,7 @@ module.exports = ({
         path: getDirFn('dist/client'),
     },
     module: {
-        rules: [
-            {
-                test: /\.ts(x)?/,
-                use: ['babel-loader'],
-            },
-        ],
+        rules,
     },
     resolve: webpackResolve,
     externals: {
@@ -33,5 +29,6 @@ module.exports = ({
             //  注意不能删除注释
             minify: {removeComments: false,}
         }),
+        new MiniCssExtractPlugin(),
     ],
 });
