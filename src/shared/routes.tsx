@@ -3,7 +3,7 @@ import { RouteConfig } from 'react-router-config';
 import Home from "@shared/components/home";
 import About from "@shared/components/about";
 import {requestGetData} from "@shared/request";
-import Test from "@shared/components/test";
+import Test from "@shared/components/test/test";
 
 const routes: RouteConfig = [
 		{
