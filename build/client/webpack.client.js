@@ -1,8 +1,21 @@
-const {getDirFn, webpackResolve, rules} = require('../constants');
+const {getDirFn, webpackResolve, rules: _rules} = require('../constants');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-module.exports = ({
+const {merge} = require('webpack-merge');
+const rules = [..._rules];
+rules.splice(1, 0,
+    {
+        test: /\.style.module.(css|less)$/,
+        use: [
+            {
+                loader: 'style-loader'
+            },
+        ],
+    }
+)
+console.log(rules);
+module.exports = merge({
     output: {
         filename: 'js/bundle.[contenthash:4].js',
         path: getDirFn('dist/client'),

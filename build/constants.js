@@ -17,14 +17,28 @@ const rules = [
         use: ['babel-loader'],
     },
     {
-        test: /\.css/,
+        test: /\.(css|less)$/,
+        exclude: /style/,
         use: [
             {
                 loader: MiniCssExtractPlugin.loader
             },
-            'css-loader'
-        ]
-    }
+        ],
+    },
+    {
+        test: /\.(css|less)$/,
+        use: [
+            {
+                loader: 'css-loader',
+                options: {
+                    sourceMap: false,
+                }
+            },
+            {
+                loader: 'less-loader'
+            }
+        ],
+    },
 ]
 
 module.exports = {
