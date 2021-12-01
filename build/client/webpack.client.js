@@ -1,7 +1,9 @@
 const {getDirFn, webpackResolve, rules: _rules} = require('../constants');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const {WebpackManifestPlugin} = require('webpack-manifest-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+// const CustomPluginManifest = require('../plugin/custom-plugin-manifest');
 const {merge} = require('webpack-merge');
 const rules = [..._rules];
 rules.splice(1, 0,
@@ -14,7 +16,7 @@ rules.splice(1, 0,
         ],
     }
 )
-console.log('客户端 rules：',rules);
+console.log('客户端 rules：', rules);
 module.exports = merge({
     output: {
         filename: 'js/bundle.[contenthash:4].js',
@@ -43,5 +45,17 @@ module.exports = merge({
             minify: {removeComments: false,}
         }),
         new MiniCssExtractPlugin(),
+        //  官方 manifest
+        new WebpackManifestPlugin({
+            //  指定路径前缀，输出路径
+            basePath: '',
+            publicPath: '',
+        }),
+        //  自定义 manifest 插件
+        // new CustomPluginManifest()
     ],
+    optimization: {
+        splitChunks: {chunks: "all"},
+        runtimeChunk: {name: "runtime"},
+    },
 });
