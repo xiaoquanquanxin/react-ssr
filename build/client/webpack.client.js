@@ -19,7 +19,7 @@ rules.splice(1, 0,
 console.log('客户端 rules：', rules);
 module.exports = merge({
     output: {
-        filename: 'js/bundle.[contenthash:4].js',
+        filename: 'js/bundle.[contenthash:5].js',
         path: getDirFn('dist/client'),
     },
     module: {
@@ -44,7 +44,10 @@ module.exports = merge({
             //  注意不能删除注释
             minify: {removeComments: false,}
         }),
-        new MiniCssExtractPlugin(),
+        new MiniCssExtractPlugin({
+            filename: '[name].[contenthash:5].css',
+            chunkFilename: '[id].[contenthash:5].css',
+        }),
         //  官方 manifest
         new WebpackManifestPlugin({
             //  指定路径前缀，输出路径
