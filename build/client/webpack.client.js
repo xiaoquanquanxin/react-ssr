@@ -19,8 +19,9 @@ rules.splice(1, 0,
 console.log('客户端 rules：', rules);
 module.exports = merge({
     output: {
-        filename: 'js/bundle.[contenthash:5].js',
         path: getDirFn('dist/client'),
+        filename: 'js/bundle.[name].[chunkhash:5].js',
+        chunkFilename: 'js/[name].[contenthash:5].js',
     },
     module: {
         rules,
@@ -58,7 +59,7 @@ module.exports = merge({
         // new CustomPluginManifest()
     ],
     optimization: {
-        splitChunks: {chunks: "all"},
+        // splitChunks: {chunks: "all"},
         runtimeChunk: {name: "runtime"},
     },
 });

@@ -2,6 +2,11 @@ import * as React from 'react';
 import {createContext, Dispatch, SetStateAction, useContext, useState} from "react";
 import lessModule from './test.module.less';
 import lessStyle from './test.style.module.less';
+import asyncChunk from "@shared/components/test/asyncChunk";
+
+// const asyncChunk = () => import('./asyncChunk')
+// asyncChunk(1)
+asyncChunk(1)
 
 console.log('lessStyle');
 console.log(lessStyle);
@@ -74,7 +79,7 @@ const Test = () => {
 		return (
 				<P.Provider value={{count, setCount}}>
 						<div className={`${lessModule.test} ${lessStyle.test}`}>
-						{/*<div className={`${lessStyle}`}>*/}
+								{/*<div className={`${lessStyle}`}>*/}
 								<Pa/>
 								<hr/>
 								<Pb/>
