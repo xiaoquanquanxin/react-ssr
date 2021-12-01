@@ -14,7 +14,7 @@ rules.splice(1, 0,
         ],
     }
 )
-console.log(rules);
+console.log('客户端 rules：',rules);
 module.exports = merge({
     output: {
         filename: 'js/bundle.[contenthash:4].js',
