@@ -11,19 +11,17 @@ const router = new koaRouter();
 const koa = require("koa");
 const app = new koa();
 export default (mode) => {
-		router.get(['/about', '/test', '/'], async ctx => {
+		//  路由请求
+		router.get(['/about', '/test', '/params/:id',], async ctx => {
 				const {url} = ctx.req;
 				const {path} = ctx.request;
 				console.log('客户端请求url是', url);
-				console.log('客户端请求路由是', path);
+				// console.log('客户端请求路由是', path);
 				const promises = [];
 				routes.some(route => {
 						//  匹配路由
 						const match = matchPath(path, route.path);
 						if (match) {
-								console.log('***********************');
-								console.log(route);
-								console.log('***********************');
 								if (route.loadData) {
 										promises.push(route.loadData({from: "server"}));
 								}
@@ -34,10 +32,13 @@ export default (mode) => {
 				//  todo    这里，以后考虑，多层路由的情况
 				ctx.body = ssrTemplate(mode, path, ssrData[0]);
 		});
-		//  接口请求
+		//  api接口请求
 		router.get(['/api/getData'], ctx => {
 				ctx.body = JSON.stringify({name: `接口返回的数据`});
 		});
+		//  路由重定向，前面已经挂载了路由和api，这是最后挂载的东西
+		//  todo
+
 		//  路由注册到app上
 		app.use(router.routes());
 		app.use(router.allowedMethods());

@@ -7,6 +7,8 @@ interface Route {
 		element: JSX.Element,
 		loadData?: (x?) => any,
 		routes?: RouteConfig,
+		childRoutes?: RouteConfig,
+		redirectTo?: string,
 }
 
 //  路由表

@@ -3,6 +3,8 @@ import Home from "@shared/components/home/home";
 import About from "@shared/components/about/about";
 import {requestGetData} from "@shared/request";
 import Test from "@shared/components/test/test";
+import Params from "@shared/components/params/params";
+import {Navigate} from "react-router-dom";
 
 const routes: RouteConfig = [
 		{
@@ -27,7 +29,16 @@ const routes: RouteConfig = [
 		{
 				path: "/test",
 				element: <Test/>,
-		}
+		},
+		{
+				path: '/params/:id',
+				element: <Params/>
+		},
+		{
+				path: '*',
+				element: (<><Navigate replace={true} to={'/'}/></>),
+				redirectTo: "/",
+		},
 ];
 
 

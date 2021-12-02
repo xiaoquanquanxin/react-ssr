@@ -12,10 +12,16 @@ function Layout() {
 												<Link to="/">Home</Link>
 										</li>
 										<li>
-												<Link to="/about">About</Link>
+												<Link to="about">About</Link>
 										</li>
 										<li>
-												<Link to="/test">Test</Link>
+												<Link to="test">Test</Link>
+										</li>
+										<li>
+												<Link to="params/123">Params</Link>
+										</li>
+										<li>
+												<Link to="redirect">redirect</Link>
 										</li>
 								</ul>
 						</nav>
@@ -30,9 +36,13 @@ const App = () => {
 				<>
 						<Layout/>
 						<Routes>
-								{routes.map((route, index) => (
-										<Route {...route} key={index}/>
-								))}
+								{
+										routes.map((route, index) => {
+												return (
+														<Route {...route} key={index}/>
+												)
+										})
+								}
 						</Routes>
 				</>
 		);
