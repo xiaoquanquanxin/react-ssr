@@ -19,6 +19,7 @@ rules.splice(1, 0,
 console.log('客户端 rules：', rules);
 module.exports = merge({
     output: {
+        publicPath: '/',
         path: getDirFn('dist/client'),
         filename: 'js/bundle.[name].[contenthash:5].js',
         chunkFilename: 'js/[name].[contenthash:5].js',
