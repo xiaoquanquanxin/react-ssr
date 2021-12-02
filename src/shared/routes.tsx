@@ -1,7 +1,7 @@
 import React from "react";
 import { RouteConfig } from 'react-router-config';
-import Home from "@shared/components/home";
-import About from "@shared/components/about";
+import Home from "@shared/components/home/home";
+import About from "@shared/components/about/about";
 import {requestGetData} from "@shared/request";
 import Test from "@shared/components/test/test";
 
