@@ -1,5 +1,4 @@
 import React from "react";
-import { RouteConfig } from 'react-router-config';
 import Home from "@shared/components/home/home";
 import About from "@shared/components/about/about";
 import {requestGetData} from "@shared/request";
@@ -9,7 +8,6 @@ const routes: RouteConfig = [
 		{
 				path: "/",
 				element: <Home/>,
-
 		},
 		{
 				path: "/about",

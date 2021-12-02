@@ -18,9 +18,15 @@ export default (mode) => {
 				console.log('客户端请求路由是', path);
 				const promises = [];
 				routes.some(route => {
+						//  匹配路由
 						const match = matchPath(path, route.path);
-						if (match && route.loadData) {
-								promises.push(route.loadData({from: "server"}));
+						if (match) {
+								console.log('***********************');
+								console.log(route);
+								console.log('***********************');
+								if (route.loadData) {
+										promises.push(route.loadData({from: "server"}));
+								}
 						}
 						return match;
 				});
