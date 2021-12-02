@@ -20,7 +20,7 @@ console.log('客户端 rules：', rules);
 module.exports = merge({
     output: {
         path: getDirFn('dist/client'),
-        filename: 'js/bundle.[name].[chunkhash:5].js',
+        filename: 'js/bundle.[name].[contenthash:5].js',
         chunkFilename: 'js/[name].[contenthash:5].js',
     },
     module: {
@@ -47,7 +47,7 @@ module.exports = merge({
         }),
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash:5].css',
-            chunkFilename: '[id].[contenthash:5].css',
+            chunkFilename: '[name].[contenthash:5].css',
         }),
         //  官方 manifest
         new WebpackManifestPlugin({
@@ -59,6 +59,8 @@ module.exports = merge({
         // new CustomPluginManifest()
     ],
     optimization: {
+        //  在不同的编译中不变的短数字 id。有益于长期缓存。在生产模式中会默认开启。
+        moduleIds: 'deterministic',
         // splitChunks: {chunks: "all"},
         runtimeChunk: {name: "runtime"},
     },
