@@ -8,7 +8,7 @@ interface Route {
 		loadData?: (x?) => any;
 		children?: RouteConfig;
 		redirectTo?: string;
-		key: string;
+		key?: string;
 }
 
 //  路由表

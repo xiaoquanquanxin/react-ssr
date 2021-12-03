@@ -2,7 +2,7 @@ import ssrTemplate from './serverUtils/ssrTemplate';
 //	静态资源服务器
 import koaStatic from 'koa-static';
 import {matchPath} from "react-router-dom";
-import {routes, getPath} from "@shared/routes";
+import {routes, getNodeJsRoutes} from "@shared/routes";
 
 //	路由
 const koaRouter = require('@koa/router');
@@ -12,7 +12,7 @@ const koa = require("koa");
 const app = new koa();
 export default (mode) => {
 		console.log('服务端路由');
-		const pathList = getPath(routes);
+		const pathList = getNodeJsRoutes(routes);
 		console.log(pathList);
 
 		//  路由请求

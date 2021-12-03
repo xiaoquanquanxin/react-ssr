@@ -6,50 +6,60 @@ import Test from "@shared/components/test/test";
 import Params from "@shared/components/params/params";
 import Production from "@shared/components/production/production";
 import AddProduction from "@shared/components/production/addProduction/addProduction";
+import EditProduction from "@shared/components/production/editProduction/editProduction";
 
 const routes: RouteConfig = [
 		{
 				path: "/",
 				element: <Home/>,
-				key: '0',
 		},
 		{
 				path: "/about",
 				element: <About/>,
 				loadData: async (params) => requestGetData(params),
-				key: '1',
 		},
 		{
 				path: "/test",
 				element: <Test/>,
-				key: '2',
 		},
 		{
 				path: '/params/:id',
 				element: <Params/>,
-				key: '3',
 		},
 		{
 				path: "/production",
 				element: <Production/>,
-				key: '4',
 				children: [
 						{
 								path: "add",
 								element: <AddProduction/>,
-								key: '401',
+						},
+						{
+								path: "edit",
+								element: <EditProduction/>,
 						}
 				]
 		},
 ];
 
+//  设置 key
+(function setKey(routes: RouteConfig, parentKey: string = ''): void {
+		routes.forEach((route, index) => {
+				const key = parentKey ? parentKey + '-' + index : index.toString();
+				if (route.children && route.children.length) {
+						setKey(route.children, key);
+				}
+				route.key = key;
+		})
+})(routes);
 
-const getPath = (routes: RouteConfig, parentPath: string = ''): Array<string> => {
+//  获取 node js 路由
+const getNodeJsRoutes = (routes: RouteConfig, parentPath: string = ''): Array<string> => {
 		const list = [];
 		routes.forEach(route => {
 				const path = parentPath ? (parentPath + '/' + route.path) : route.path;
 				if (route.children && route.children.length) {
-						const children = getPath(route.children, path);
+						const children = getNodeJsRoutes(route.children, path);
 						list.push(...children);
 				}
 				list.push(path);
@@ -59,5 +69,5 @@ const getPath = (routes: RouteConfig, parentPath: string = ''): Array<string> =>
 
 export {
 		routes,
-		getPath,
+		getNodeJsRoutes,
 };
