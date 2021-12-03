@@ -4,14 +4,14 @@
 //  每一个路由节点
 interface Route {
 		path: string;
-		element: JSX.Element,
-		loadData?: (x?) => any,
-		routes?: RouteConfig,
-		childRoutes?: RouteConfig,
-		redirectTo?: string,
+		element: JSX.Element;
+		loadData?: (x?) => any;
+		children?: RouteConfig;
+		redirectTo?: string;
+		key: string;
 }
 
 //  路由表
-interface RouteConfig extends Array<Route> {
-}
+// type RouteConfig = Array<Route>;
+interface RouteConfig extends Array<Route>{}
 
