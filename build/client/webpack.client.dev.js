@@ -1,6 +1,6 @@
-const {merge} = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const server = require('./webpack.client');
-const {getDirFn} = require('../constants');
+const { getDirFn } = require('../constants');
 const webpack = require('webpack');
 const mode = 'development';
 module.exports = merge(server, {
@@ -12,19 +12,22 @@ module.exports = merge(server, {
         rules: [
             {
                 test: /\.ts(x)$/,
-                enforce: "pre",
+                enforce: 'pre',
                 use: [
                     {
-                        loader: "source-map-loader",
-                    }
-                ]
-            }
-        ]
+                        loader: 'source-map-loader',
+                    },
+                ],
+            },
+        ],
     },
+    //  设置为 false，自定义插件才生效
+    devtool: false,
     plugins: [
         new webpack.SourceMapDevToolPlugin({
             filename: '[file].map',
-            module: true,
-        })
+            columns: false,
+            module: false,
+        }),
     ],
 });
