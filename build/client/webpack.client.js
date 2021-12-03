@@ -43,6 +43,7 @@ module.exports = merge({
         new HtmlWebpackPlugin({
             template: getDirFn('src/client/template.html'),
             filename: getDirFn('dist/client/index.html'),
+            favicon: getDirFn('src/client/assets/images/favicon.ico'),
             //  注意不能删除注释
             minify: {removeComments: false,}
         }),
