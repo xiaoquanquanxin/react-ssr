@@ -3,11 +3,6 @@ import {createContext, Dispatch, SetStateAction, useContext, useState} from "rea
 import lessModule from './test.module.less';
 import lessStyle from './test.style.module.less';
 
-console.log('lessStyle');
-console.log(lessStyle);
-
-// console.log(less);
-
 interface InterfaceP {
 		count: number;
 		setCount?: Dispatch<SetStateAction<number>>
