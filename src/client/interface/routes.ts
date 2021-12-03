@@ -9,9 +9,10 @@ interface Route {
 		children?: RouteConfig;
 		redirectTo?: string;
 		key?: string;
+		//  路由完全匹配
+		exact?: boolean;
 }
 
 //  路由表
-// type RouteConfig = Array<Route>;
-interface RouteConfig extends Array<Route>{}
+type RouteConfig = Array<Route>;
 

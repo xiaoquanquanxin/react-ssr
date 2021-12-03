@@ -12,6 +12,7 @@ const routes: RouteConfig = [
 		{
 				path: "/",
 				element: <Home/>,
+				exact: true,
 		},
 		{
 				path: "/about",
