@@ -4,42 +4,60 @@ import About from "@shared/components/about/about";
 import {requestGetData} from "@shared/request";
 import Test from "@shared/components/test/test";
 import Params from "@shared/components/params/params";
-import {Navigate} from "react-router-dom";
+import Production from "@shared/components/production/production";
+import AddProduction from "@shared/components/production/addProduction/addProduction";
 
 const routes: RouteConfig = [
 		{
 				path: "/",
 				element: <Home/>,
+				key: '0',
 		},
 		{
 				path: "/about",
 				element: <About/>,
 				loadData: async (params) => requestGetData(params),
-				// routes: [
-				// 		{
-				// 				path: "/tacos/bus",
-				// 				// component: Bus
-				// 		},
-				// 		{
-				// 				path: "/tacos/cart",
-				// 				// component: Cart
-				// 		}
-				// ]
+				key: '1',
 		},
 		{
 				path: "/test",
 				element: <Test/>,
+				key: '2',
 		},
 		{
 				path: '/params/:id',
-				element: <Params/>
+				element: <Params/>,
+				key: '3',
 		},
 		{
-				path: '*',
-				element: (<><Navigate replace={true} to={'/'}/></>),
-				redirectTo: "/",
+				path: "/production",
+				element: <Production/>,
+				key: '4',
+				children: [
+						{
+								path: "add",
+								element: <AddProduction/>,
+								key: '401',
+						}
+				]
 		},
 ];
 
 
-export default routes;
+const getPath = (routes: RouteConfig, parentPath: string = ''): Array<string> => {
+		const list = [];
+		routes.forEach(route => {
+				const path = parentPath ? (parentPath + '/' + route.path) : route.path;
+				if (route.children && route.children.length) {
+						const children = getPath(route.children, path);
+						list.push(...children);
+				}
+				list.push(path);
+		});
+		return list;
+}
+
+export {
+		routes,
+		getPath,
+};
