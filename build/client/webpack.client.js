@@ -1,21 +1,21 @@
-const {getDirFn, webpackResolve, rules: _rules} = require('../constants');
+const { getDirFn, webpackResolve, rules: _rules } = require('../constants');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const {WebpackManifestPlugin} = require('webpack-manifest-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 // const CustomPluginManifest = require('../plugin/custom-plugin-manifest');
-const {merge} = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const rules = [..._rules];
 rules.splice(1, 0,
     {
         test: /\.style.module.(css|less)$/,
         use: [
             {
-                loader: 'style-loader'
+                loader: 'style-loader',
             },
         ],
-    }
-)
+    },
+);
 console.log('客户端 rules：', rules);
 module.exports = merge({
     output: {
@@ -38,14 +38,14 @@ module.exports = merge({
     },
     plugins: [
         new CleanWebpackPlugin({
-            cleanOnceBeforeBuildPatterns: getDirFn('dist')
+            cleanOnceBeforeBuildPatterns: getDirFn('dist'),
         }),
         new HtmlWebpackPlugin({
             template: getDirFn('src/client/template.html'),
             filename: getDirFn('dist/client/index.html'),
             favicon: getDirFn('src/client/assets/images/favicon.ico'),
             //  注意不能删除注释
-            minify: {removeComments: false,}
+            minify: { removeComments: false },
         }),
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash:5].css',
@@ -64,6 +64,6 @@ module.exports = merge({
         //  在不同的编译中不变的短数字 id。有益于长期缓存。在生产模式中会默认开启。
         moduleIds: 'deterministic',
         // splitChunks: {chunks: "all"},
-        runtimeChunk: {name: "runtime"},
+        runtimeChunk: { name: 'runtime' },
     },
 });
