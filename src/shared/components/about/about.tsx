@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {useReducer} from "react";
 import {useEffect} from "react";
-import {requestGetData} from "@shared/request";
 import {getInitialState, reducer} from "@client/store/reducer";
+import {requestGetAboutData} from "@shared/request/about/requestAbout";
 
 function About() {
 		const [data, setData] = useReducer(reducer, getInitialState());
@@ -12,7 +12,7 @@ function About() {
 						if (data && data.name) {
 								return;
 						}
-						const result = await requestGetData() as initialState;
+						const result = await requestGetAboutData() as initialState;
 						result.name += ' 此为请求返回';
 						setData({type: 'set', newData: result});
 				})();
