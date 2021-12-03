@@ -37,7 +37,8 @@ export default (mode) => {
 				ctx.body = ssrTemplate(mode, path, ssrData[0]);
 		});
 		//  api接口请求
-		router.get(['/api/getData'], ctx => {
+		router.get(['/api/getAboutData'], ctx => {
+				console.log('进入 node js 的 api');
 				ctx.body = JSON.stringify({name: `接口返回的数据`});
 		});
 		//  路由注册到app上
