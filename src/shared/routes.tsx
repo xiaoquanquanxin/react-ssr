@@ -1,12 +1,11 @@
 import React from "react";
+import {requestGetAboutData} from "@shared/request/about/requestAbout";
 import Home from "@shared/components/home/home";
 import About from "@shared/components/about/about";
-import {requestGetData} from "@shared/request";
 import Test from "@shared/components/test/test";
-import Params from "@shared/components/params/params";
 import Production from "@shared/components/production/production";
-import AddProduction from "@shared/components/production/addProduction/addProduction";
-import EditProduction from "@shared/components/production/editProduction/editProduction";
+import ProductionDetail from "@shared/components/production/productionDetail/productionDetail";
+import {requestGetProductionDetailData} from "@shared/request/production/requestProduction";
 
 const routes: RouteConfig = [
 		{
@@ -17,15 +16,11 @@ const routes: RouteConfig = [
 		{
 				path: "/about",
 				element: <About/>,
-				loadData: async (params) => requestGetData(params),
+				loadData: async (params) => requestGetAboutData(params),
 		},
 		{
 				path: "/test",
 				element: <Test/>,
-		},
-		{
-				path: '/params/:id',
-				element: <Params/>,
 		},
 		{
 				path: "/production",
@@ -33,11 +28,12 @@ const routes: RouteConfig = [
 				children: [
 						{
 								path: "add",
-								element: <AddProduction/>,
+								element: <ProductionDetail/>,
 						},
 						{
-								path: "edit",
-								element: <EditProduction/>,
+								path: "edit/:id",
+								element: <ProductionDetail/>,
+								loadData: async (params) => requestGetProductionDetailData(params),
 						}
 				]
 		},
@@ -55,7 +51,7 @@ const routes: RouteConfig = [
 })(routes);
 
 //  获取 node js 路由
-const getNodeJsRoutes = (routes: RouteConfig, parentPath: string = ''): Array<string> => {
+const getNodeJsRoutes = (routes: RouteConfig, parentPath: string = ''): RouteConfig => {
 		const list = [];
 		routes.forEach(route => {
 				const path = parentPath ? (parentPath + '/' + route.path) : route.path;
@@ -63,7 +59,8 @@ const getNodeJsRoutes = (routes: RouteConfig, parentPath: string = ''): Array<st
 						const children = getNodeJsRoutes(route.children, path);
 						list.push(...children);
 				}
-				list.push(path);
+				route.path = path;
+				list.push(route);
 		});
 		return list;
 }

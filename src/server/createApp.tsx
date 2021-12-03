@@ -3,6 +3,7 @@ import ssrTemplate from './serverUtils/ssrTemplate';
 import koaStatic from 'koa-static';
 import {matchPath} from "react-router-dom";
 import {routes, getNodeJsRoutes} from "@shared/routes";
+import {allGetApiList} from "@shared/request/apiInterface";
 
 //	路由
 const koaRouter = require('@koa/router');
@@ -16,18 +17,22 @@ export default (mode) => {
 		console.log(pathList);
 
 		//  路由请求
-		router.get(pathList, async ctx => {
-				const {url} = ctx.req;
+		router.get(pathList.map(v => v.path), async ctx => {
+				// const {url} = ctx.req;
 				const {path} = ctx.request;
-				console.log('客户端请求url是', url);
-				// console.log('客户端请求路由是', path);
+				// console.log('客户端请求url是', url);
+				console.log('客户端请求路由是', path);
+				// console.log(ctx.request);
 				const promises = [];
-				routes.some(route => {
+				pathList.some(route => {
 						//  匹配路由
-						const match = matchPath(path, route.path);
+						const match = matchPath(route.path, path);
 						if (match) {
+								// console.log('服务端匹配的路由是');
+								//  console.log(match);
 								if (route.loadData) {
-										promises.push(route.loadData({from: "server"}));
+										const {params} = match;
+										promises.push(route.loadData(params));
 								}
 						}
 						return match;
@@ -37,7 +42,7 @@ export default (mode) => {
 				ctx.body = ssrTemplate(mode, path, ssrData[0]);
 		});
 		//  api接口请求
-		router.get(['/api/getAboutData'], ctx => {
+		router.get(allGetApiList, ctx => {
 				console.log('进入 node js 的 api');
 				ctx.body = JSON.stringify({name: `接口返回的数据`});
 		});
