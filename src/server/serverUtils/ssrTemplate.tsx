@@ -23,7 +23,7 @@ const getTemplate = (mode, ssrData = {}, ssrComponent) => {
  * @param {string} url
  * @param {any} ssrData
  * */
-export default (mode, url, ssrData) => {
+const ssrTemplate = (mode, url, ssrData) => {
 		createInitialState(ssrData);
 		return getTemplate(
 				mode,
@@ -35,3 +35,5 @@ export default (mode, url, ssrData) => {
 				)
 		);
 }
+
+export default ssrTemplate;
