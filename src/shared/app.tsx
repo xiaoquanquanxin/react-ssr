@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {Routes, Route, Outlet, Link} from "react-router-dom";
-
-import routes from "@shared/routes";
+import {routes} from "@shared/routes";
 
 function Layout() {
 		return (
@@ -23,6 +22,9 @@ function Layout() {
 										<li>
 												<Link to="redirect">redirect</Link>
 										</li>
+										<li>
+												<Link to="production">Production</Link>
+										</li>
 								</ul>
 						</nav>
 						<hr/>
@@ -31,18 +33,31 @@ function Layout() {
 		);
 }
 
+//  渲染，通过 routes 数据
+const RenderByRoutes = (routes: RouteConfig) => {
+		return routes.map((route, index) => {
+				//  有子路由
+				if (route.children && route.children.length) {
+						const {children} = route;
+						delete route.children;
+						return (
+								<Route {...route}>
+										{RenderByRoutes(children)}
+								</Route>
+						)
+				}
+				return (
+						<Route {...route}/>
+				)
+		})
+}
+
 const App = () => {
 		return (
 				<>
-						<Layout/>
+						<Layout key={1}/>
 						<Routes>
-								{
-										routes.map((route, index) => {
-												return (
-														<Route {...route} key={index}/>
-												)
-										})
-								}
+								{RenderByRoutes(routes)}
 						</Routes>
 				</>
 		);
