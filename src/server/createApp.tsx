@@ -12,7 +12,7 @@ const koa = require("koa");
 const app = new koa();
 export default (mode) => {
 		//  路由请求
-		router.get(['/about', '/test', '/params/:id',], async ctx => {
+		router.get(['/about', '/test', '/params/:id', '/'], async ctx => {
 				const {url} = ctx.req;
 				const {path} = ctx.request;
 				console.log('客户端请求url是', url);
@@ -36,15 +36,21 @@ export default (mode) => {
 		router.get(['/api/getData'], ctx => {
 				ctx.body = JSON.stringify({name: `接口返回的数据`});
 		});
-		//  路由重定向，前面已经挂载了路由和api，这是最后挂载的东西
-		//  todo
-
 		//  路由注册到app上
 		app.use(router.routes());
 		app.use(router.allowedMethods());
-
 		//  启动静态资源服务器
 		app.use(koaStatic('../client'));
+
+		//  路由重定向，前面已经挂载了路由和api，这是最后挂载的东西
+		app.use((ctx, next) => {
+				if (ctx.response.status == 404) {
+						const {url} = ctx.req;
+						console.log('重定向的url是', url);
+						ctx.response.redirect('/');
+				}
+		})
+
 		app.listen(3000, () => {
 				console.clear();
 				process.nextTick(() => {
