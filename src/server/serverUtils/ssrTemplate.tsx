@@ -2,7 +2,7 @@ const React = require("react");
 const fs = require("fs");
 import {createInitialState} from "@client/store/reducer";
 import {StaticRouter} from "react-router-dom/server";
-import {App} from "@shared/app";
+import {App} from "@server/app";
 //	react 官网服务端渲染-将组件渲染成静态标记，这就是将react代码在服务端渲染的部分
 const {renderToString} = require('react-dom/server');
 import getCdnScripts from './getCdnScripts';

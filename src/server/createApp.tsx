@@ -2,7 +2,7 @@ import ssrTemplate from './serverUtils/ssrTemplate';
 //	静态资源服务器
 import koaStatic from 'koa-static';
 import {matchPath} from "react-router-dom";
-import routes from "@shared/routes";
+import {routes, getPath} from "@shared/routes";
 
 //	路由
 const koaRouter = require('@koa/router');
@@ -11,8 +11,12 @@ const router = new koaRouter();
 const koa = require("koa");
 const app = new koa();
 export default (mode) => {
+		console.log('服务端路由');
+		const pathList = getPath(routes);
+		console.log(pathList);
+
 		//  路由请求
-		router.get(['/about', '/test', '/params/:id', '/'], async ctx => {
+		router.get(pathList, async ctx => {
 				const {url} = ctx.req;
 				const {path} = ctx.request;
 				console.log('客户端请求url是', url);
@@ -52,7 +56,7 @@ export default (mode) => {
 		})
 
 		app.listen(3000, () => {
-				console.clear();
+				// console.clear();
 				process.nextTick(() => {
 						console.log('服务已经启动');
 						console.log(mode);
