@@ -16,9 +16,6 @@ function Layout() {
 												<Link to="test">Test</Link>
 										</li>
 										<li>
-												<Link to="params/123">Params</Link>
-										</li>
-										<li>
 												<Link to="redirect">redirect</Link>
 										</li>
 										<li>
