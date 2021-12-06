@@ -1,12 +1,14 @@
 import React from "react";
 import {requestGetAboutData} from "@shared/request/about/requestAbout";
-import Home from "@shared/components/home/home";
-import About from "@shared/components/about/about";
-import Test from "@shared/components/test/test";
-import Production from "@shared/components/production/production";
-import ProductionDetail from "@shared/components/production/productionDetail/productionDetail";
 import {requestGetProductionDetailData} from "@shared/request/production/requestProduction";
+import {AsyncRouter} from "@shared/components/asyncLoad/asyncLoad";
+const Home = AsyncRouter(() => import("@shared/components/home/home"));
+const About = AsyncRouter(() => import("@shared/components/about/about"));
+const Test = AsyncRouter(() => import("@shared/components/test/test"));
+const Production = AsyncRouter(() => import("@shared/components/production/production"));
+const ProductionDetail = AsyncRouter(() => import("@shared/components/production/productionDetail/productionDetail"));
 
+debugger
 const routes: RouteConfig = [
 		{
 				path: "/",
