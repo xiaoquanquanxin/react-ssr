@@ -5,6 +5,7 @@ import {routes} from "@shared/routes";
 import {Routes} from "react-router-dom";
 import {RenderByRoutes} from "@shared/basic";
 import {Layout} from "@shared/components/layout/layout";
+import '@client/assets/css/index.css';
 
 routes.push({
 		path: '*',
@@ -20,12 +21,12 @@ routes.push({
 //  服务端app
 const App = () => {
 		return (
-				<>
+				<div style={{display: "flex"}}>
 						<Layout key={1}/>
 						<Routes>
 								{RenderByRoutes(routes)}
 						</Routes>
-				</>
+				</div>
 		);
 };
 
