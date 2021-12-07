@@ -1,33 +1,5 @@
 import * as React from 'react';
-import {Route, Outlet, Link} from "react-router-dom";
-
-function Layout() {
-		return (
-				<div>
-						<nav>
-								<ul>
-										<li>
-												<Link to="/">Home</Link>
-										</li>
-										<li>
-												<Link to="about">About</Link>
-										</li>
-										<li>
-												<Link to="test">Test</Link>
-										</li>
-										<li>
-												<Link to="redirect">redirect</Link>
-										</li>
-										<li>
-												<Link to="production">Production</Link>
-										</li>
-								</ul>
-						</nav>
-						<hr/>
-						<Outlet/>
-				</div>
-		);
-}
+import {Route} from "react-router-dom";
 
 //  渲染，通过 routes 数据
 const RenderByRoutes = (routes: RouteConfig) => {
@@ -40,15 +12,14 @@ const RenderByRoutes = (routes: RouteConfig) => {
 								<Route {...route}>
 										{RenderByRoutes(children)}
 								</Route>
-						)
+						);
 				}
 				return (
 						<Route {...route}/>
-				)
-		})
-}
+				);
+		});
+};
 
 export {
-		Layout,
 		RenderByRoutes,
-}
+};
