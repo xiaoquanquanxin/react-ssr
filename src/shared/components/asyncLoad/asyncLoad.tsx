@@ -32,7 +32,6 @@ export function AsyncRouter(loadRouter) {
 				state = {Component: null}
 
 				dispatchRouterQueue(type) {
-						const {history} = this.props;
 						console.log(this.props);
 						routerObserveQueue.forEach(item => {
 								if (item.type === type) item.callback(history)
