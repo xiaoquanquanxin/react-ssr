@@ -1,7 +1,8 @@
 import {Routes} from "react-router-dom";
 import {routes} from "@shared/routes";
 import * as React from "react";
-import {Layout, RenderByRoutes} from "@shared/basic";
+import {RenderByRoutes} from "@shared/basic";
+import {Layout} from "@shared/components/layout/layout";
 
 //  服务端app
 const App = () => {
@@ -17,4 +18,4 @@ const App = () => {
 
 export {
 		App,
-}
+};

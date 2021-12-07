@@ -3,7 +3,8 @@ import {Navigate} from "react-router-dom";
 import React from "react";
 import {routes} from "@shared/routes";
 import {Routes} from "react-router-dom";
-import {Layout, RenderByRoutes} from "@shared/basic";
+import {RenderByRoutes} from "@shared/basic";
+import {Layout} from "@shared/components/layout/layout";
 
 routes.push({
 		path: '*',
@@ -14,7 +15,7 @@ routes.push({
 		),
 		redirectTo: "/",
 		key: '-1',
-},)
+},);
 
 //  服务端app
 const App = () => {
@@ -30,4 +31,4 @@ const App = () => {
 
 export {
 		App,
-}
+};
