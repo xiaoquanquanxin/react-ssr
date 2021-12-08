@@ -1,7 +1,8 @@
 import {BrowserRouter} from 'react-router-dom';
 import {App} from '@client/app';
 // @ts-ignore
-ReactDOM.render(
+//	接收注水，保持最大化复用
+ReactDOM.hydrate(
 		(
 				// @ts-ignore
 				<BrowserRouter>
