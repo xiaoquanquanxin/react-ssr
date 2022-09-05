@@ -1,8 +1,7 @@
 interface initialState {
-		name: string
+  name: string;
 }
 
 declare interface Window {
-		initialState: initialState;
+  initialState: initialState;
 }
-

@@ -10,7 +10,8 @@
         "build:dev:clent": "webpack --config build/client/webpack.client.dev.js",
         "build:dev:server": "webpack --config build/server/webpack.server.dev.js",
         "build:prod:clent": "webpack --config build/client/webpack.client.prod.js",
-        "build:prod:server": "webpack --config build/server/webpack.server.prod.js"
+        "build:prod:server": "webpack --config build/server/webpack.server.prod.js",
+        "prettier": "prettier  --write \"./src/**/*.{js,ts,jsx,json,tsx,vue,css,less,sass}\" "
     },
     "author": "",
     "license": "ISC",
@@ -18,8 +19,10 @@
         "axios": "^0.24.0",
         "koa": "^2.13.4",
         "koa-static": "^5.0.0",
+        "prettier": "^2.7.1",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
+        "react-router-config": "^5.1.1",
         "react-router-dom": "^6.0.2",
         "webpack-manifest-plugin": "^4.0.2"
     },
